@@ -1,28 +1,22 @@
 module positionType
 
-    contains
-
     type :: position
-        integer :: x, y, distance
-        character :: name(12)
+        integer :: x
+        integer :: y
+        real :: distance
         character :: displayed
-    end type
+    end type position
 
 end module positionType
 
 program derivedTypes
 
     use positionType, only: position
-
-    character :: newName(12)
     type(position) :: player
 
-    read *, newName
-
-    player(x = 10, y = 15)
-    player%name = newName
+    player%x = 10
+    player%y = 15
     player%displayed = 'n'
-    player%distance = euclideanDistance(player%x, player%y)
 
     call displayPosition(player)
 
@@ -30,10 +24,10 @@ program derivedTypes
 
     function euclideanDistance(x, y) result (distance)
 
-        integer, intent(in) :: x, y
+        integer, intent(inout) :: x, y
         real :: distance
 
-        distance == ((x ** 2) + (y ** 2)) ** 0.5
+        distance = ((x ** 2) + (y ** 2)) ** 0.5
 
     end function euclideanDistance
 
@@ -43,7 +37,7 @@ program derivedTypes
 
         type(position), intent(inout) :: player
 
-        print *, 'Player ', trim(player%name), 'is ', player%distance, 'from the origin.'
+        print *, 'Player is ', player%distance, ' units from the origin.'
 
         player%displayed = 'y'
 
