@@ -14,8 +14,8 @@ program derivedTypes
     use positionType, only: position
     type(position) :: player
 
-    player%x = 10
-    player%y = 15
+    player%x = 3
+    player%y = 4
     player%displayed = 'n'
 
     call displayPosition(player)
@@ -24,7 +24,7 @@ program derivedTypes
 
     function euclideanDistance(x, y) result (distance)
 
-        integer, intent(inout) :: x, y
+        integer, intent(in) :: x, y
         real :: distance
 
         distance = ((x ** 2) + (y ** 2)) ** 0.5
